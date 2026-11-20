@@ -1,0 +1,102 @@
+/* Lumen — estilos complementarios a theme.json */
+
+::selection { background: var(--wp--preset--color--accent); color: var(--wp--preset--color--base); }
+
+/* Cabecera fija y translúcida */
+.lumen-header {
+	position: sticky;
+	top: 0;
+	z-index: 50;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	background: color-mix(in srgb, var(--wp--preset--color--base) 82%, transparent);
+	border-bottom: 1px solid #22211e;
+}
+.admin-bar .lumen-header { top: 32px; }
+
+/* Antetítulo */
+.is-style-lumen-eyebrow {
+	font-family: var(--wp--preset--font-family--body) !important;
+	font-size: var(--wp--preset--font-size--small) !important;
+	letter-spacing: 0.32em !important;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--accent);
+	font-weight: 400 !important;
+}
+
+/* Portada: texto con ligera sombra y línea de desplazamiento */
+.lumen-hero .wp-block-cover__inner-container { text-shadow: 0 2px 30px rgba(0, 0, 0, 0.35); }
+.lumen-hero h1 em { font-style: italic; color: var(--wp--preset--color--accent); }
+.lumen-scroll {
+	display: inline-block;
+	width: 1px;
+	height: 64px;
+	background: linear-gradient(var(--wp--preset--color--contrast), transparent);
+	animation: lumen-scroll 2.2s ease-in-out infinite;
+	transform-origin: top;
+}
+@keyframes lumen-scroll {
+	0% { transform: scaleY(0); opacity: 1; }
+	60% { transform: scaleY(1); opacity: 1; }
+	100% { transform: scaleY(1); opacity: 0; }
+}
+
+/* Galería mosaico (CSS columns) */
+.wp-block-gallery.is-style-lumen-masonry {
+	display: block !important;
+	columns: 3 280px;
+	column-gap: 0.75rem;
+}
+.wp-block-gallery.is-style-lumen-masonry > .wp-block-image {
+	width: 100% !important;
+	margin: 0 0 0.75rem !important;
+	break-inside: avoid;
+}
+.wp-block-gallery.is-style-lumen-masonry img {
+	height: auto !important;
+	object-fit: initial !important;
+}
+
+/* Imágenes: zoom suave al pasar el cursor */
+.wp-block-gallery .wp-block-image,
+.lumen-series .wp-block-image { overflow: hidden; }
+.wp-block-gallery .wp-block-image img,
+.lumen-series .wp-block-image img {
+	transition: transform 0.9s cubic-bezier(.2, .7, .2, 1), filter 0.6s ease;
+	filter: saturate(0.9);
+}
+.wp-block-gallery .wp-block-image:hover img,
+.lumen-series .wp-block-image:hover img { transform: scale(1.04); filter: saturate(1.05); }
+
+/* Estilo "película": grano + viñeta */
+.is-style-lumen-grain { position: relative; }
+.is-style-lumen-grain::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	background:
+		radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.45) 100%),
+		url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.18'/></svg>");
+	mix-blend-mode: overlay;
+}
+
+/* Tarjetas de servicios */
+.lumen-service {
+	border-top: 1px solid #2c2b28;
+	transition: border-color 0.4s ease;
+}
+.lumen-service:hover { border-color: var(--wp--preset--color--accent); }
+.lumen-price { font-family: var(--wp--preset--font-family--display); }
+
+/* Listado del diario */
+.lumen-journal .wp-block-post { border-top: 1px solid #22211e; padding-top: 1.5rem; }
+.lumen-journal .wp-block-post-featured-image img { aspect-ratio: 4 / 5; object-fit: cover; }
+
+/* Animación de aparición */
+.lumen-reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s ease, transform 1s cubic-bezier(.2, .7, .2, 1); }
+.lumen-reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+	.lumen-reveal { opacity: 1; transform: none; transition: none; }
+	.lumen-scroll { animation: none; }
+}

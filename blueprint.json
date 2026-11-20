@@ -1,0 +1,26 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"landingPage": "/",
+	"preferredVersions": { "php": "8.2", "wp": "latest" },
+	"features": { "networking": true },
+	"steps": [
+		{
+			"step": "installTheme",
+			"themeData": {
+				"resource": "git:directory",
+				"url": "https://github.com/LuisMRojas/wp-lumen-photography",
+				"ref": "main",
+				"refType": "branch"
+			},
+			"options": { "activate": true, "targetFolderName": "lumen" }
+		},
+		{
+			"step": "setSiteOptions",
+			"options": { "blogname": "Lumen", "blogdescription": "Fotografía documental y editorial" }
+		},
+		{
+			"step": "runPHP",
+			"code": "<?php require '/wordpress/wp-load.php'; wp_delete_post( 1, true ); $posts = array( array( 'Diez días en la costa de Chiloé', 'Volver a un lugar hasta que deja de ser postal. Notas sobre niebla, palafitos y la paciencia de esperar la marea.' ), array( 'Por qué sigo usando un 35 mm fijo', 'Limitarse a una sola focal obliga a moverse, acercarse y decidir. Una defensa del zoom con los pies.' ), array( 'Revelar menos, mirar más', 'Mi flujo de edición en tres pasos y por qué casi nunca toco la saturación.' ) ); foreach ( $posts as $i => $p ) { wp_insert_post( array( 'post_title' => $p[0], 'post_content' => '<!-- wp:paragraph --><p>' . $p[1] . '</p><!-- /wp:paragraph --><!-- wp:image {\"sizeSlug\":\"large\"} --><figure class=\"wp-block-image size-large\"><img src=\"https://picsum.photos/seed/lumen-post-' . $i . '/1600/1000\" alt=\"\"/></figure><!-- /wp:image -->', 'post_excerpt' => $p[1], 'post_status' => 'publish', 'post_date' => gmdate( 'Y-m-d H:i:s', strtotime( '-' . ( $i * 9 ) . ' days' ) ) ) ); }"
+		}
+	]
+}
