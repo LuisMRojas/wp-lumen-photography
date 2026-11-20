@@ -1,9 +1,18 @@
 {
 	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
 	"landingPage": "/",
-	"preferredVersions": { "php": "8.2", "wp": "latest" },
-	"features": { "networking": true },
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
 	"steps": [
+		{
+			"step": "setSiteLanguage",
+			"language": "es_ES"
+		},
 		{
 			"step": "installTheme",
 			"themeData": {
@@ -12,11 +21,17 @@
 				"ref": "main",
 				"refType": "branch"
 			},
-			"options": { "activate": true, "targetFolderName": "lumen" }
+			"options": {
+				"activate": true,
+				"targetFolderName": "lumen"
+			}
 		},
 		{
 			"step": "setSiteOptions",
-			"options": { "blogname": "Lumen", "blogdescription": "Fotografía documental y editorial" }
+			"options": {
+				"blogname": "Lumen",
+				"blogdescription": "Fotografía documental y editorial"
+			}
 		},
 		{
 			"step": "runPHP",
