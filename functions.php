@@ -72,3 +72,17 @@ function lumen_block_styles() {
 	);
 }
 add_action( 'init', 'lumen_block_styles' );
+
+/**
+ * Los enlaces de plantillas y patrones son relativos a la raíz ("/#seccion").
+ * Se convierten a la URL real del sitio para que funcionen también en
+ * instalaciones en subdirectorio (p. ej. WordPress Playground).
+ */
+function lumen_absolute_links( $html ) {
+	if ( false === strpos( $html, '="/' ) ) {
+		return $html;
+	}
+	$home = untrailingslashit( home_url() );
+	return preg_replace( '#(href|action)="/(?!/)#', '$1="' . esc_url( $home ) . '/', $html );
+}
+add_filter( 'render_block', 'lumen_absolute_links' );
