@@ -4,7 +4,9 @@
 
 **Lumen** es un tema de bloques (Full Site Editing) creado desde cero para fotógrafos que quieren un portafolio oscuro, editorial y rápido, editable al 100 % desde el Editor de sitios de WordPress, sin page builders ni plugins.
 
-### ▶ [Ver demo en vivo (WordPress Playground)](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/LuisMRojas/wp-lumen-photography/main/blueprint.json)
+### 🌐 [Ver el sitio en vivo](https://luismrojas.github.io/wp-lumen-photography/)
+
+¿Quieres explorar el panel de WordPress? [Abrir la demo con acceso de administrador](https://playground.wordpress.net/?blueprint-url=https://raw.githubusercontent.com/LuisMRojas/wp-lumen-photography/main/blueprint.json)
 
 > La demo levanta un WordPress real en tu navegador, instala el tema desde este repositorio y crea contenido de ejemplo. Tarda unos segundos en cargar.
 
